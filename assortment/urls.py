@@ -1,11 +1,7 @@
-from django.urls import path
-from assortment.views.drink import DrinkAPIView
-from assortment.views.list_views import DrinkListAPIView, PizzaListAPIView
-from assortment.views.pizza import PizzaAPIView
+from django.urls import path, include
+
+from assortment.router import router
 
 urlpatterns = [
-    path('pizza/', PizzaListAPIView.as_view()),
-    path('pizza/<slug:slug>/', PizzaAPIView.as_view()),
-    path('drink/', DrinkListAPIView.as_view()),
-    path('drink/<slug:slug>/', DrinkAPIView.as_view()),
+    path('/', include(router.urls))
 ]
