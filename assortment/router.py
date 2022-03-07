@@ -1,10 +1,8 @@
 from rest_framework import routers
 
-from assortment.views.drink import DrinkViewSet
-from assortment.views.pizza import PizzaViewSet
-from assortment.views.coupon import CouponViewSet
+from assortment.views.category import CategoryViewSet
+from assortment.views.product import ProductViewSet
 
 router = routers.DefaultRouter()
-router.register(r'pizza', PizzaViewSet)
-router.register(r'drink', DrinkViewSet)
-router.register(r'coupon', CouponViewSet)
+router.register(r'product', ProductViewSet)
+router.register(r'category', CategoryViewSet)

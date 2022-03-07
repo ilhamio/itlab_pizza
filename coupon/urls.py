@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from assortment.router import router
+from coupon.router import router
 
 urlpatterns = [
     path('', include(router.urls))

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'assortment.apps.AssortmentConfig',
     'order.apps.OrderConfig',
+    'coupon.apps.CouponConfig',
 ]
 
 MIDDLEWARE = [
