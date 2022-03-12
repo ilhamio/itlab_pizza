@@ -7,7 +7,7 @@ from assortment.models.product import Product
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'price', 'size', 'description', 'is_active', 'created', 'updated']
     list_filter = ['is_active', 'created', 'price']
-    list_editable = ['name', 'price', 'is_active']
+    list_editable = ['price', 'is_active']
     prepopulated_fields = {'slug': ('name',)}
 
 
