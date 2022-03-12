@@ -1,15 +1,12 @@
-from decimal import Decimal
-
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from assortment.models.category import Category
 
 
-
-
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    """Product model for creating pizzas, drinks etc."""
+
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, verbose_name='category')
     name = models.CharField(max_length=64, verbose_name='name')
     slug = models.SlugField(max_length=64, unique=True, verbose_name='slug')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='price')
@@ -18,7 +15,6 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='created')
     updated = models.DateTimeField(auto_now=True, verbose_name='updated')
     size = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='size')
-
 
     class Meta:
         verbose_name = 'Продукт'
