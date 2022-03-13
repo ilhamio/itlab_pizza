@@ -9,7 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-        read_only = ['created', 'updated']
+        read_only_fields = ['created', 'updated']
 
     def validate_size(self, value):
         """validating size value"""
