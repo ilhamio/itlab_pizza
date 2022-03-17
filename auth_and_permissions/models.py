@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
-RANK_CHOICES = ((1, 'Cook'), (2, 'Waiter'), (3, 'Administrator'))
-
 
 class User(AbstractUser):
 
