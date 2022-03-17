@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from archive.models.archive_order import ArchiveOrder
 from order.models.order import Order
 from order.models.order_item import OrderItem
 
@@ -14,4 +15,9 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
 
 
+class ArchiveOrderAdmin(admin.ModelAdmin):
+    list_display = ['name_in_queue', 'created', 'cost', 'coupon']
+
+
 admin.site.register(Order, OrderAdmin)
+admin.site.register(ArchiveOrder, ArchiveOrderAdmin)
