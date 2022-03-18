@@ -26,8 +26,10 @@ INSTALLED_APPS = [
     'coupon.apps.CouponConfig',
     'archive.apps.ArchiveConfig',
     'auth_and_permissions.apps.AuthAndPermissionsConfig',
-    'drf_yasg'
+    'drf_yasg',
+    "django_createsuperuserwithpassword"
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,14 +66,12 @@ WSGI_APPLICATION = 'pizza_itlab.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': DB_NAME,
-        # 'USER': 'postgres',
-        # 'PASSWORD': DB_PASSWORD,
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '5432',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'itlab.sqlite3'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 

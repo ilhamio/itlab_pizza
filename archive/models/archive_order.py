@@ -18,7 +18,7 @@ class ArchiveOrder(models.Model):
         verbose_name_plural = 'Архивированные заказы'
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     @property
     def get_name_in_queue(self):

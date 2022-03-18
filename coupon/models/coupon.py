@@ -36,4 +36,4 @@ class Coupon(models.Model):
             self.active = False
 
     def is_valid(self) -> bool:
-        return bool(self.valid_from < datetime.date.today() < self.valid_to)
+        return bool(self.valid_from <= datetime.date.today() <= self.valid_to)

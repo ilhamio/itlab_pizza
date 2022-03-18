@@ -6,7 +6,7 @@ from rest_framework.viewsets import GenericViewSet
 from auth_and_permissions.permissions import IsWaiter
 from order.models.order_item import OrderItem
 from order.serializers.order_item import OrderItemCreateSerializer, OrderItemUpdateSerializer
-from order.views.utils import check_item
+from order.views.utils import check_item, check_order
 
 
 class OrderItemCreateDestroyViewSet(mixins.CreateModelMixin, mixins.DestroyModelMixin, GenericViewSet):
@@ -21,10 +21,13 @@ class OrderItemCreateDestroyViewSet(mixins.CreateModelMixin, mixins.DestroyModel
         serializer.is_valid(raise_exception=True)
         serializer.data['order_id'] = order_id
 
+        order_instance = check_order(order_id)
+        if not order_instance:
+            return Response({'error': 'No such order'})
         order_item_instance = check_item(order_id, serializer.data['product'])
         if order_item_instance:
-            serializer.update(order_item_instance, serializer.validated_data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            ser = serializer.update(order_item_instance, serializer.validated_data)
+            return Response(ser.data)
 
         OrderItem.objects.create(product_id=serializer.data['product'], order_id=order_id,
                                  quantity=serializer.data['quantity'])

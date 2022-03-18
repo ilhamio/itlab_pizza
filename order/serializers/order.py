@@ -17,15 +17,17 @@ class OrderSerializer(serializers.ModelSerializer):
     def validate_place(self, value):
         if value:
             if value <= 0:
-                return serializers.ValidationError("Not correct place value")
+                raise serializers.ValidationError("Not correct place value")
         return value
 
     def validate_coupon(self, value):
+        print(value)
         if value:
             coupon = Coupon.objects.filter(code=value)
+            print(coupon, coupon[0])
             if coupon:
                 if coupon[0].is_valid():
                     return coupon[0]
 
-        return serializers.ValidationError("Coupon is not valid!")
+        raise serializers.ValidationError("Coupon is not valid!")
             
