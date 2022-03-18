@@ -42,17 +42,21 @@ class Order(models.Model):
             return price - ((self.coupon.discount / Decimal('100')) * price)
         return price
 
+    def change_status(self, value):
+        if value == 2:
+            self.register()
+        else:
+            self.complete()
+
     def register(self):
         self.status = 2
+        self.is_registered = True
         self.save()
 
     def complete(self):
         self.status = 3
         self.save()
 
-    def finish(self):
-        self.status = 4
-        self.save()
 
     @property
     def get_name_in_queue(self) -> str:

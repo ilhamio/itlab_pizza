@@ -24,10 +24,10 @@ def check_order(order_id):
 
 def change_status(value, **kwargs):
     instance = check_order(kwargs.get('order_id', None))
-    print(instance.get_status)
+
     if not instance:
         return Response({'error': 'No such order'})
 
-    instance.register()
+    instance.change_status(value)
     return Response({'success': f'Статус заказа {instance.id} изменен на "{STATUS_CHOICES[value][1]}"'})
 
