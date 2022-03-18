@@ -13,7 +13,7 @@
 ### Установка
 ***
 #### Для запуска контейнера:
-`docker-compose up ---build`
+`docker-compose up --build`
 #### Запуск без контейнера:
 Для начала устанавливаем зависиости:
 `pip istall -r requirements.txt`
